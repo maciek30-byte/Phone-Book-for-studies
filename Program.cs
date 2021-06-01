@@ -1,38 +1,74 @@
-﻿using System;
-using PhoneBook.Components;
-using System.Linq;
-using System.Collections.Generic;
+﻿namespace PhoneBook
+//add validation input parameters//
+// add some try catch//
+// add delete contat functionality//
 
-namespace PhoneBook
+
 {
-    class Program
+    using System;
+    using PhoneBook.Components;
+
+    internal class Program
     {
-        static void Main(string[] args)
+        internal static void Main(string[] args)
         {
-            Contact maciek = new Contact("Maciek", "Opozda", "531-256-638");
-            Contact piotrek = new Contact("Piotrek", "Srotrek", "534-928-511");
-            Contact wiesiek = new Contact("Wiesiek", "Koleszka", "424-928-913");
-            Contact gerw = new Contact("Gerwazy", "Nowak", "641-343-912");
-            PBook maciejList = new PBook();
-            maciejList.AddContact(piotrek);
-            maciejList.AddContact(wiesiek);
-            maciejList.AddContact(gerw);
-            Console.WriteLine(maciejList.allContacts.Count);
 
+            Console.WriteLine("Welcome to console Phone Book!!!!!!!!!!!");
+            Console.WriteLine("We have several functionality to do");
+            Console.WriteLine("1.Add Contact to List");
+            Console.WriteLine("2. Show details about Contact");
+            Console.WriteLine("Show all Contacts");
+            Console.WriteLine("4.Filtred Contact by phrase");
+            Console.WriteLine(" If you want Close app press c");
 
+            PBook defaultBook = new PBook();
+            var userInput = Console.ReadLine();
 
+            while (true)
+            // infinity loop while user closed  app//
+            {
+                switch (userInput)
+                {
+                    // add  try catch to fast validation//
 
+                    case "1":
+                        Console.WriteLine("Insert Contact Name");
+                        string inputName = Console.ReadLine();
+                        Console.WriteLine("Insert Surname");
+                        string inputSurname = Console.ReadLine();
+                        Console.WriteLine("Insert Phone Number by xxx-xxx-xxx");
+                        string phoneNumber = Console.ReadLine();
+                        Contact createdContact = new Contact(inputName, inputSurname, phoneNumber);
+                        defaultBook.AddContact(createdContact);
+                        Console.WriteLine(" Contact successfuly Added");
+                        break;
 
+                    case "2":
+                        Console.WriteLine("Insert Contact Name");
+                        string contactName = Console.ReadLine();
+                        defaultBook.DisplayContact(contactName);
+                        break;
 
+                    case "3":
+                        defaultBook.DisplayAllContactsInList();
 
+                        break;
 
+                    case "4":
+                        Console.WriteLine("insert Phrase To Search");
+                        string phrase = Console.ReadLine();
+                        defaultBook.FindContact(phrase);
 
-
-
-
-
+                        break;
+                    case "c":
+                        return;
+                    default:
+                        Console.WriteLine("We have only four options to chosse");
+                        break;
+                }
+                Console.WriteLine("Select Functionality");
+                userInput = Console.ReadLine();
+            }
         }
-
-
     }
 }

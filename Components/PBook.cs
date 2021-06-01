@@ -18,7 +18,7 @@
             Console.WriteLine($"Contact name and surname is {contact.Name} {contact.Surname} and Phone Number {contact.PhoneNumber} ");
         }
 
-        private void DisplayAllContactsDetails(List<Contact> contacts)
+        private void ShowAllInformationsAboutContacts(List<Contact> contacts)
         {
             foreach (var contact in contacts)
             {
@@ -37,19 +37,20 @@
             else
             {
                 ShowAllInformationAboutContact(contact);
+                // single contact details
             }
         }
 
         public void DisplayAllContactsInList()
         {
-            DisplayAllContactsDetails(allContacts);
+            ShowAllInformationsAboutContacts(allContacts);
         }
 
         public void FindContact(string phrase)
         {
             var filtredList = allContacts.Where(c => c.Name.Contains(phrase)).ToList();
-            DisplayAllContactsDetails(filtredList);
-
+            // contains we couuld match a piece of phrase, and convert to list, that we used in SAIACs function
+            ShowAllInformationsAboutContacts(filtredList);
         }
     }
 }
