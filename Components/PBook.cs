@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PhoneBook.Components
+﻿namespace PhoneBook.Components
 {
-    class PBook
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    internal class PBook
     {
         public List<Contact> allContacts = new List<Contact>();
 
@@ -20,6 +18,14 @@ namespace PhoneBook.Components
             Console.WriteLine($"Contact name and surname is {contact.Name} {contact.Surname} and Phone Number {contact.PhoneNumber} ");
         }
 
+        private void DisplayAllContactsDetails(List<Contact> contacts)
+        {
+            foreach (var contact in contacts)
+            {
+                ShowAllInformationAboutContact(contact);
+            }
+        }
+
         public void DisplayContact(string Name)
         {
             var contact = allContacts.FirstOrDefault(c => c.Name == Name);
@@ -31,29 +37,18 @@ namespace PhoneBook.Components
             else
             {
                 ShowAllInformationAboutContact(contact);
-
             }
-
-
-            // try that conditions fire without else statment//
-
         }
 
         public void DisplayAllContactsInList()
         {
-            foreach (var contact in allContacts)
-            {
-                ShowAllInformationAboutContact(contact);
-            }
-
+            DisplayAllContactsDetails(allContacts);
         }
 
         public void FindContact(string phrase)
         {
             var filtredList = allContacts.Where(c => c.Name.Contains(phrase)).ToList();
-
-            //Where methods filter list and return value matched to predicate//
-            // To.List assinged matched values To list and convert our variable to that//
+            DisplayAllContactsDetails(filtredList);
 
         }
     }

@@ -18,7 +18,8 @@ namespace PhoneBook
             maciejList.AddContact(wiesiek);
             maciejList.AddContact(gerw);
             Console.WriteLine(maciejList.allContacts.Count);
-            maciejList.DisplayContact("Maciek");
+
+
 
 
 
