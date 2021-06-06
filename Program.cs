@@ -1,25 +1,14 @@
 ﻿namespace PhoneBook
-//add validation input parameters//
-// add some try catch//
-// add delete contat functionality//
-
-
 {
-    using System;
     using PhoneBook.Components;
+    using System;
 
     internal class Program
     {
         internal static void Main(string[] args)
         {
 
-            Console.WriteLine("Welcome to console Phone Book!!!!!!!!!!!");
-            Console.WriteLine("We have several functionality to do");
-            Console.WriteLine("1.Add Contact to List");
-            Console.WriteLine("2. Show details about Contact");
-            Console.WriteLine("Show all Contacts");
-            Console.WriteLine("4.Filtred Contact by phrase");
-            Console.WriteLine(" If you want Close app press c");
+            ShowUserMessage();
 
             PBook defaultBook = new PBook();
             var userInput = Console.ReadLine();
@@ -40,17 +29,24 @@
                         string phoneNumber = Console.ReadLine();
                         Contact createdContact = new Contact(inputName, inputSurname, phoneNumber);
                         defaultBook.AddContact(createdContact);
+                        Console.Clear();
                         Console.WriteLine(" Contact successfuly Added");
+
                         break;
 
                     case "2":
                         Console.WriteLine("Insert Contact Name");
                         string contactName = Console.ReadLine();
                         defaultBook.DisplayContact(contactName);
+
                         break;
 
                     case "3":
                         defaultBook.DisplayAllContactsInList();
+
+                        // validate List length//
+                        // check//
+
 
                         break;
 
@@ -58,6 +54,12 @@
                         Console.WriteLine("insert Phrase To Search");
                         string phrase = Console.ReadLine();
                         defaultBook.FindContact(phrase);
+                        break;
+                    case "5":
+                        Console.WriteLine("Insert Contact name to delete");
+                        string nameToDelete = Console.ReadLine();
+                        defaultBook.DeleteContact(nameToDelete);
+
 
                         break;
                     case "c":
@@ -67,7 +69,22 @@
                         break;
                 }
                 Console.WriteLine("Select Functionality");
+                ShowUserMessage();
                 userInput = Console.ReadLine();
+
+
+
+            }
+            void ShowUserMessage()
+            {
+                Console.WriteLine("Welcome to console Phone Book!!!!!!!!!!!");
+                Console.WriteLine("We have several functionality to do");
+                Console.WriteLine("1. Add Contact to List");
+                Console.WriteLine("2. Show details about Contact");
+                Console.WriteLine("3. Show all Contacts");
+                Console.WriteLine("4. Filtred Contact by phrase");
+                Console.WriteLine("5. Delete Contact by name");
+                Console.WriteLine(" If you want Close app press c");
             }
         }
     }

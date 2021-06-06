@@ -11,6 +11,7 @@
         public void AddContact(Contact newContact)
         {
             allContacts.Add(newContact);
+            // if contact exist throw error//
         }
 
         private void ShowAllInformationAboutContact(Contact contact)
@@ -18,12 +19,29 @@
             Console.WriteLine($"Contact name and surname is {contact.Name} {contact.Surname} and Phone Number {contact.PhoneNumber} ");
         }
 
+        public void DeleteContact(string contactName)
+        {
+
+            allContacts.RemoveAll(c => c.Name == contactName);
+            // if contact not exist throw error //
+        }
+
         private void ShowAllInformationsAboutContacts(List<Contact> contacts)
         {
-            foreach (var contact in contacts)
+            // is not working properly//
+            if (contacts.Count < 1)
             {
-                ShowAllInformationAboutContact(contact);
+                Console.WriteLine(" Contact's List is Empty");
+
             }
+            else
+            {
+                foreach (var contact in contacts)
+                {
+                    ShowAllInformationAboutContact(contact);
+                }
+            }
+
         }
 
         public void DisplayContact(string Name)
@@ -48,9 +66,17 @@
 
         public void FindContact(string phrase)
         {
-            var filtredList = allContacts.Where(c => c.Name.Contains(phrase)).ToList();
-            // contains we couuld match a piece of phrase, and convert to list, that we used in SAIACs function
-            ShowAllInformationsAboutContacts(filtredList);
+            if (allContacts.Count < 2)
+            {
+                DisplayAllContactsInList();
+            }
+            else
+            {
+                var filtredList = allContacts.Where(c => c.Name.Contains(phrase)).ToList();
+                // contains we couuld match a piece of phrase, and convert to list, that we used in SAIACs function
+                ShowAllInformationsAboutContacts(filtredList);
+            }
+
         }
     }
 }
